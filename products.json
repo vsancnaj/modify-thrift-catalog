@@ -1,0 +1,24 @@
+[
+  {
+    "id": "recgOz53ePi0i9J5a",
+    "title": "Striped Boston Bag",
+    "category": "Designer Bags",
+    "description": "This bag features a repeating monogram pattern with vertical red and navy stripes. It has double top handles and a shoulder strap.",
+    "brand": "Gucci",
+    "condition": "Very good",
+    "price": "$250",
+    "status": "Draft",
+    "image": "images/boston.png"
+  },
+  {
+    "id": "reczGMtZ9XiIUqwes",
+    "title": "Monogrammed Shoulder Bag",
+    "category": "Designer Bags",
+    "description": "A shoulder bag with a repeating monogram pattern and brown trim. It has a flap closure with a gold-toned buckle detail.",
+    "brand": "Gucci",
+    "condition": "Very good",
+    "price": "$550",
+    "status": "Draft",
+    "image": "images/shoulder.png"
+  }
+]
