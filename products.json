@@ -20,5 +20,16 @@
     "price": "$550",
     "status": "Draft",
     "image": "images/shoulder.png"
+  },
+  {
+    "id": "recUT3afArxW8IMi3",
+    "title": "Monogram mini handbag",
+    "category": "Designer Bags",
+    "description": "This small brown handbag features a repeating monogram pattern. It has dual top handles and a detachable shoulder strap.",
+    "brand": "Needs confirmation, likely Louis Vuitton",
+    "condition": "Very good",
+    "price": "$1000",
+    "status": "Draft",
+    "image": "images/recUT3afArxW8IMi3.png"
   }
 ]
