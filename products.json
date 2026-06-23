@@ -9,5 +9,16 @@
     "price": "$550",
     "status": "Draft",
     "image": "images/rectJI4Kn5Ze8U87R.png"
+  },
+  {
+    "id": "recOXgMjAo3x25a44",
+    "title": "Monogram Speedy Nano",
+    "category": "Designer Bags",
+    "description": "A classic, small brown monogram canvas Speedy bag with tan leather trim and straps. It features gold-toned hardware and a detachable strap.",
+    "brand": "Louis Vuitton",
+    "condition": "Very good",
+    "price": "$1000",
+    "status": "Draft",
+    "image": "images/recOXgMjAo3x25a44.png"
   }
 ]
