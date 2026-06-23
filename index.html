@@ -37,8 +37,6 @@
   }
   .serif{font-family:'Cormorant Garamond',Georgia,serif}
   a{color:inherit}
-
-  /* ---------- Announcement strip ---------- */
   .announce{
     background:var(--plum);
     color:#f6e9ec;
@@ -49,8 +47,6 @@
     padding:9px 16px;
     font-weight:400;
   }
-
-  /* ---------- Header ---------- */
   header{
     text-align:center;
     padding:64px 24px 40px;
@@ -99,8 +95,6 @@
     color:var(--ink-faint);
     margin-top:12px;
   }
-
-  /* ---------- Category nav ---------- */
   .nav{
     position:sticky;
     top:0;
@@ -138,8 +132,6 @@
   }
   .nav a:hover{color:var(--rose-deep)}
   .nav a:hover::after{transform:scaleX(1)}
-
-  /* ---------- Editorial intro band ---------- */
   .ethos{
     max-width:680px;
     margin:0 auto;
@@ -161,10 +153,7 @@
     margin-left:auto;
     margin-right:auto;
   }
-
-  /* ---------- Main / grid ---------- */
   main{max-width:1180px;margin:0 auto;padding:44px 24px 90px}
-
   .section-head{
     display:flex;
     align-items:baseline;
@@ -184,13 +173,11 @@
     color:var(--ink-faint);
     font-weight:400;
   }
-
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
     gap:clamp(22px,3vw,40px);
   }
-
   .card{
     background:var(--paper);
     border:1px solid var(--line-soft);
@@ -204,7 +191,6 @@
     transform:translateY(-5px);
     border-color:var(--line);
   }
-
   .ph{
     position:relative;
     aspect-ratio:4/5;
@@ -217,7 +203,6 @@
     transition:transform .8s cubic-bezier(.2,.7,.2,1);
   }
   .card:hover .ph img{transform:scale(1.05)}
-
   .tag-cond{
     position:absolute;top:14px;left:14px;
     background:rgba(255,255,255,.92);
@@ -248,7 +233,6 @@
     70%{box-shadow:0 0 0 6px rgba(243,198,208,0)}
     100%{box-shadow:0 0 0 0 rgba(243,198,208,0)}
   }
-
   .body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
   .cat{
     font-size:10px;letter-spacing:.2em;text-transform:uppercase;
@@ -292,8 +276,6 @@
     font-weight:400;
   }
   .inquire:hover{color:var(--rose-deep);border-color:var(--rose)}
-
-  /* empty state */
   .empty{
     text-align:center;
     padding:60px 20px;
@@ -302,8 +284,6 @@
     font-style:italic;
     font-size:22px;
   }
-
-  /* ---------- Promise strip ---------- */
   .promise{
     background:var(--cream-2);
     border-top:1px solid var(--line);
@@ -331,8 +311,6 @@
     font-size:11px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--rose);margin-bottom:12px;font-weight:500;
   }
-
-  /* ---------- Footer ---------- */
   footer{
     text-align:center;
     padding:64px 24px 56px;
@@ -380,8 +358,6 @@
     text-transform:uppercase;
     color:var(--ink-faint);
   }
-
-  /* ---------- Responsive ---------- */
   @media (max-width:720px){
     header{padding:48px 22px 32px}
     .promise-in{grid-template-columns:1fr;gap:34px}
@@ -463,37 +439,7 @@
 </footer>
 
 <script>
-  // Catalog data is loaded from products.json (the bot/n8n appends to it).
-  // FALLBACK_PRODUCTS is a built-in copy so the page still renders if the
-  // fetch fails (e.g. opened as a local file). products.json wins when present.
-  const FALLBACK_PRODUCTS = [
-    {
-      id: "recgOz53ePi0i9J5a",
-      title: "Striped Boston Bag",
-      category: "Designer Bags",
-      description: "This bag features a repeating monogram pattern with vertical red and navy stripes. It has double top handles and a shoulder strap.",
-      brand: "Gucci",
-      condition: "Very good",
-      price: "$250",
-      status: "Draft",
-      image: "images/boston.png"
-    },
-    {
-      id: "reczGMtZ9XiIUqwes",
-      title: "Monogrammed Shoulder Bag",
-      category: "Designer Bags",
-      description: "A shoulder bag with a repeating monogram pattern and brown trim. It has a flap closure with a gold-toned buckle detail.",
-      brand: "Gucci",
-      condition: "Very good",
-      price: "$550",
-      status: "Draft",
-      image: "images/shoulder.png"
-    }
-  ];
-
-  // Compose the display title. If a real brand is confirmed, lead with it
-  // (e.g. "Gucci Striped Boston Bag"). Strip any "(owner confirmed)" style
-  // parenthetical. If no brand or "No brand / pattern only", show plain title.
+  var FALLBACK_PRODUCTS = [];
   function cleanBrand(raw){
     if(!raw) return "";
     var b = String(raw).replace(/\s*\(.*?\)\s*/g, " ").trim();
@@ -502,66 +448,38 @@
     if(/pattern only/i.test(b)) return "";
     return b;
   }
-
   function displayTitle(p){
     var brand = cleanBrand(p.brand);
     var title = (p.title || "").trim();
     if(brand && title.toLowerCase().indexOf(brand.toLowerCase()) === 0){
-      // title already starts with the brand, don't double it up
       return title;
     }
     return brand ? (brand + " " + title) : title;
   }
-
-  // Basic HTML escaping so descriptions/titles can't break the markup.
   function esc(s){
     return String(s == null ? "" : s)
       .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
       .replace(/"/g,"&quot;");
   }
-
-  const grid = document.getElementById('grid');
-  const count = document.getElementById('count');
-
+  var grid = document.getElementById('grid');
+  var count = document.getElementById('count');
   function render(products){
-    const list = Array.isArray(products) ? products : [];
-    const live = list.filter(p => p && p.status !== 'Sold');
-
+    var list = Array.isArray(products) ? products : [];
+    var live = list.filter(function(p){ return p && p.status !== 'Sold'; });
     count.textContent = live.length === 1
       ? 'The Collection · 1 Piece Available'
       : 'The Collection · ' + live.length + ' Pieces Available';
-
     if(live.length === 0){
-      grid.innerHTML = '<div class="empty">Freshly sold out. New pieces are always on the way, come back soon.</div>';
+      grid.innerHTML = '<div class="empty">The collection is being curated. New one-of-one pieces arrive soon.</div>';
       return;
     }
-    grid.innerHTML = live.map(p => `
-      <article class="card">
-        <div class="ph">
-          <img src="${esc(p.image)}" alt="${esc(displayTitle(p))}" loading="lazy">
-          <span class="tag-cond">${esc(p.condition)}</span>
-          <span class="tag-oo"><span class="dot"></span>One of one</span>
-        </div>
-        <div class="body">
-          <div class="cat">${esc(p.category)}</div>
-          <h2 class="title">${esc(displayTitle(p))}</h2>
-          <p class="desc">${esc(p.description)}</p>
-          <div class="meta">
-            <span class="price">${esc(p.price)}</span>
-            <a class="inquire" href="https://modifythrift.com">Inquire</a>
-          </div>
-        </div>
-      </article>
-    `).join('');
+    grid.innerHTML = live.map(function(p){ return '<article class="card"><div class="ph"><img src="' + esc(p.image) + '" alt="' + esc(displayTitle(p)) + '" loading="lazy"><span class="tag-cond">' + esc(p.condition) + '</span><span class="tag-oo"><span class="dot"></span>One of one</span></div><div class="body"><div class="cat">' + esc(p.category) + '</div><h2 class="title">' + esc(displayTitle(p)) + '</h2><p class="desc">' + esc(p.description) + '</p><div class="meta"><span class="price">' + esc(p.price) + '</span><a class="inquire" href="https://modifythrift.com">Inquire</a></div></div></article>'; }).join('');
   }
-
-  // Load products.json (cache-busted so new listings show on refresh).
-  // Fall back to the built-in copy if the fetch fails.
   fetch('products.json?t=' + Date.now())
     .then(function(r){ if(!r.ok) throw new Error('no products.json'); return r.json(); })
     .then(function(data){
-      var items = Array.isArray(data) ? data : (data && data.products) ? data.products : null;
-      render(items && items.length ? items : FALLBACK_PRODUCTS);
+      var items = Array.isArray(data) ? data : (data && data.products) ? data.products : [];
+      render(items);
     })
     .catch(function(){ render(FALLBACK_PRODUCTS); });
 </script>
